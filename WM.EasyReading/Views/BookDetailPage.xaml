@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WM.EasyReading.Views.BookDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:WM.EasyReading.ViewModels"
+    Title="BookDetailPage"
+    Shell.TabBarIsVisible="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <VerticalStackLayout Grid.Row="0">
+            <Label>名称：</Label>
+            <Label x:Name="titleLabel" Text="{Binding CurrentBook.Simples.Title}" />
+            <Label>作者：</Label>
+            <Label x:Name="authorLabel" Text="{Binding CurrentBook.Simples.Author}" />
+            <Label>章节:</Label>
+        </VerticalStackLayout>
+        <ListView
+            x:Name="listView"
+            Grid.Row="1"
+            ItemTapped="ListView_ItemTapped"
+            ItemsSource="{Binding CurrentBook.BookChapters}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding Name}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border Grid.Row="2" Background="{x:StaticResource Primary}">
+            <Button Command="{Binding AddBookShelfCommand}" Text="加入书架" />
+        </Border>
+    </Grid>
+
+</ContentPage>

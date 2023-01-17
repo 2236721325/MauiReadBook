@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WM.EasyReading.Views.BookReadPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:WM.EasyReading.ViewModels"
+    Title="{Binding Book.Simples.Title}"
+    x:DataType="vm:BookReadViewModel"
+    Shell.NavBarIsVisible="{Binding Visible}"
+    Shell.TabBarIsVisible="False">
+
+
+
+
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}" IsVisible="{Binding Visible}" />
+    </Shell.BackButtonBehavior>-->
+
+    <Grid>
+
+
+        <ScrollView x:Name="scrollView">
+
+
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}" />
+                    <!--<SwipeGestureRecognizer
+                        Command="{Binding LastChapterCommand}"
+                        CommandParameter="{x:Reference scrollView}"
+                        Direction="Left" />
+                    <SwipeGestureRecognizer
+                        Command="{Binding NextChapterCommand}"
+                        CommandParameter="{x:Reference scrollView}"
+                        Direction="Right" />-->
+
+                </StackLayout.GestureRecognizers>
+                <Label
+                    Margin="20"
+                    FontSize="45"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                    Text="{Binding ChapterDetail.Name}" />
+                <StackLayout BindableLayout.ItemsSource="{Binding ChapterDetail.Paragraphs}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="5">
+                                <Label
+                                    FontSize="30"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <AbsoluteLayout IsVisible="{Binding Visible, Mode=TwoWay}">
+            <Grid
+                AbsoluteLayout.LayoutBounds="0.5, 1, 1, 0.1"
+                AbsoluteLayout.LayoutFlags="All"
+                Background="{StaticResource Primary}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding LastChapterCommand}"
+                    CommandParameter="{x:Reference scrollView}"
+                    Text="上一章" />
+                <Button
+                    Grid.Column="2"
+                    Command="{Binding NextChapterCommand}"
+                    CommandParameter="{x:Reference scrollView}"
+                    Text="下一章" />
+            </Grid>
+
+        </AbsoluteLayout>
+
+
+
+
+
+
+    </Grid>
+
+</ContentPage>

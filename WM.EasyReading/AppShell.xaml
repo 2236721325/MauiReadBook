@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WM.EasyReading.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WM.EasyReading"
+    xmlns:views="clr-namespace:WM.EasyReading.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <Tab Title="书架">
+            <ShellContent ContentTemplate="{DataTemplate views:BookShelfPage}" />
+        </Tab>
+        <Tab Title="搜索">
+            <ShellContent ContentTemplate="{DataTemplate views:SearchPage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>
